@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>
+    {{ profile?.description }} ({{ profile?.symbol }})
+  </mat-card-title>
+  <mat-card-content>
+    <app-sentiment
+      *ngFor="let sentiment of sentiments"
+      [sentiment]="sentiment"
+    ></app-sentiment>
+  </mat-card-content>
+</mat-card>
+<a mat-raised-button color="accent" routerLink="../..">
+  Back to list of stock
+</a>

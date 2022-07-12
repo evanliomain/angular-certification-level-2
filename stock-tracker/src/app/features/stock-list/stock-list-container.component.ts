@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadProfiles } from 'src/app/business/profile';
+import { loadProfiles, ProfileState } from 'src/app/business/profile';
 import { loadQuotes, selectQuotesAndProfil } from 'src/app/business/quote';
 import { addSymbol, SymbolState } from 'src/app/business/symbol';
 
@@ -14,7 +14,7 @@ import { addSymbol, SymbolState } from 'src/app/business/symbol';
 export class StockListContainerComponent implements OnInit {
   protected quotes$ = this.store.select(selectQuotesAndProfil);
 
-  constructor(private store: Store<SymbolState>) {}
+  constructor(private store: Store<SymbolState & ProfileState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadQuotes());

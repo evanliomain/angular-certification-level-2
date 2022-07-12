@@ -1,0 +1,10 @@
+<h3>{{ sentiment | sentimentToMonth }}</h3>
+
+<dl>
+  <dt>change</dt>
+  <dd>{{ sentiment?.change | currency }}</dd>
+  <dt>mspr</dt>
+  <dd>{{ sentiment?.mspr | currency }}</dd>
+</dl>
+
+<app-tendancy [value]="sentiment.change"></app-tendancy>

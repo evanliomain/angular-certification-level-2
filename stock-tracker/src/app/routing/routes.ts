@@ -9,4 +9,11 @@ export const routes: Routes = [
         ({ StockListModule }) => StockListModule
       ),
   },
+  {
+    path: 'sentiment',
+    loadChildren: () =>
+      import('src/app/features/stock-sentiment').then(
+        ({ StockSentimentModule }) => StockSentimentModule
+      ),
+  },
 ];

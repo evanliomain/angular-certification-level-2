@@ -1,0 +1,39 @@
+:host {
+  display: grid;
+  grid-template-areas:
+    'h h'
+    't d';
+    align-items: center;
+}
+
+h3 {
+  grid-area: h;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+dl {
+  grid-area: d;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 8rem;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+dt {
+  &::after {
+    content: ':';
+  }
+}
+
+dd {
+  text-align: end;
+  margin-inline-start: 0;
+}
+
+app-tendancy {
+  grid-area: t;
+}

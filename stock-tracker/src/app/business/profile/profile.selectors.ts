@@ -12,3 +12,6 @@ export const selectMissingProfil = (symbols: readonly string[]) =>
       .filter(({ state }) => undefined === state)
       .map(({ symbol }) => symbol)
   );
+
+export const selectProfil = (symbol: string) =>
+  createSelector(selectProfileState, state => state?.[symbol]);

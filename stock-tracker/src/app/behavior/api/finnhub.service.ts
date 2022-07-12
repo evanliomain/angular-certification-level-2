@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Quote, Search } from 'src/app/model';
+import { InsiderSentiment, Quote, Search } from 'src/app/model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,5 +32,15 @@ export class FinnhubService {
 
   public search(symbol: string): Observable<Search> {
     return this.http.get<Search>(`search?q=${symbol}`);
+  }
+
+  public sentiments(
+    symbol: string,
+    from: string,
+    to: string
+  ): Observable<InsiderSentiment> {
+    return this.http.get<InsiderSentiment>(
+      `stock/insider-sentiment?symbol=${symbol}&from=${from}&to=${to}`
+    );
   }
 }

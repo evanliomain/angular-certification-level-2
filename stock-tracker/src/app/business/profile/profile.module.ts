@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { MetaReducer, StoreModule } from '@ngrx/store';
+import { ApiModule } from 'src/app/behavior/api';
 import { storageMetaReducer } from 'src/app/behavior/storage';
 import { ProfileEffects } from './profile.effects';
 import * as fromProfile from './profile.reducer';
@@ -18,6 +19,7 @@ const metaReducers: MetaReducer<any>[] = [
       metaReducers,
     }),
     EffectsModule.forFeature([ProfileEffects]),
+    ApiModule
   ],
 })
 export class ProfileModule {}

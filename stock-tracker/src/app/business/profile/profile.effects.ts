@@ -11,6 +11,28 @@ import { selectMissingProfil } from './profile.selectors';
 
 @Injectable()
 export class ProfileEffects {
+  loadProfile$ = createEffect(() =>
+    this.actions$
+      .pipe(ofType(ProfileActions.loadProfile))
+      .pipe(
+        concatLatestFrom(({ symbol }) =>
+          this.store.select(selectMissingProfil([symbol]))
+        )
+      )
+      .pipe(filter(([, symbols]) => 0 !== symbols.length))
+      .pipe(map(([, symbols]) => symbols[0]))
+      .pipe(
+        switchMap(symbol =>
+          this.api
+            .description(symbol)
+            .pipe(map(symbol => [symbol]))
+            .pipe(
+              map(profiles => ProfileActions.loadProfilesSuccess({ profiles }))
+            )
+        )
+      )
+  );
+
   loadProfiles$ = createEffect(() =>
     this.actions$
       .pipe(ofType(ProfileActions.loadProfiles))

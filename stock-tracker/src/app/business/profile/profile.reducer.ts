@@ -1,9 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
+import { Profile } from 'src/app/model';
 import * as ProfileActions from './profile.actions';
 
 export const profileFeatureKey = 'profile';
 
-export type State = Record<string, { symbol: string; description: string }>;
+export type State = Record<string, Profile>;
 
 export const initialState: State = {};
 
