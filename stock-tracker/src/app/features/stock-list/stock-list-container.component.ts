@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { loadProfiles } from 'src/app/business/profile';
-import { loadQuotes, selectQuotes, selectQuotesAndProfil } from 'src/app/business/quote';
+import { loadQuotes, selectQuotesAndProfil } from 'src/app/business/quote';
 import { addSymbol, SymbolState } from 'src/app/business/symbol';
 
 @Component({
@@ -22,6 +22,9 @@ export class StockListContainerComponent implements OnInit {
   }
 
   protected onAdd(symbol: string): void {
-    this.store.dispatch(addSymbol({ symbol }));
+    if (undefined === symbol || null === symbol || '' === symbol) {
+      return;
+    }
+    this.store.dispatch(addSymbol({ symbol: symbol.toUpperCase() }));
   }
 }

@@ -1,0 +1,11 @@
+<mat-card>
+  <p>Enter the symbol of a stock to track</p>
+
+  <form (ngSubmit)="add.emit(input.value); input.value = ''">
+    <mat-form-field appearance="outline">
+      <input matInput type="text" #input autofocus />
+      <mat-hint>ie: AAPL, TSLA, GOOGL</mat-hint>
+    </mat-form-field>
+    <button mat-flat-button color="accent" type="submit">Track Stock</button>
+  </form>
+</mat-card>

@@ -1,0 +1,36 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 2rem;
+}
+
+.mat-card-content {
+  display: grid;
+  grid-template-areas: 't d d';
+}
+
+dl {
+  grid-area: d;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 4rem auto 4rem;
+  grid-template-rows: 1fr;
+  gap: 0.5rem;
+}
+
+dt {
+  &::after {
+    content: ':';
+  }
+}
+
+dd {
+  text-align: end;
+  margin-inline-start: 0;
+}
+
+app-tendancy {
+  grid-area: t;
+}

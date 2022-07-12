@@ -20,6 +20,7 @@ export const selectQuotesAndProfil = createSelector(
   (symbols, profiles, state) =>
     symbols.map(symbol => ({
       ...state[symbol],
-      description: profiles[symbol].description,
+      symbol,
+      description: profiles?.[symbol]?.description ?? '',
     }))
 );

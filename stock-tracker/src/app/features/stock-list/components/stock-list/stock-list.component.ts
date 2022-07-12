@@ -8,14 +8,13 @@ import {
 import { QuoteView } from 'src/app/model';
 
 @Component({
-  selector: 'app-stock-list-view',
-  templateUrl: './stock-list-view.component.html',
-  styleUrls: ['./stock-list-view.component.scss'],
+  selector: 'app-stock-list',
+  templateUrl: './stock-list.component.html',
+  styleUrls: ['./stock-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StockListViewComponent {
+export class StockListComponent {
   @Input() stocks: readonly QuoteView[] = [];
 
-  @Output() add = new EventEmitter<string>();
   @Output() remove = new EventEmitter<string>();
 }
