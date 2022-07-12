@@ -1,5 +1,9 @@
 export interface Quote {
   /**
+   * Symbol associated
+   */
+  symbol: string;
+  /**
    * Current price
    */
   c: number;

@@ -10,5 +10,20 @@
 </mat-card>
 
 <ng-container *ngFor="let stock of stocks">
-  {{ stock | json }}
+  <mat-card>
+    <mat-card-title>{{stock?.description}} ({{ stock?.symbol }})</mat-card-title>
+    <mat-card-content>
+      <dl>
+        <dt>change today</dt>
+        <dd>{{ stock?.d | currency }}</dd>
+        <dt>opening price</dt>
+        <dd>{{ stock?.o| currency }}</dd>
+        <dt>current price</dt>
+        <dd>{{ stock?.c| currency }}</dd>
+        <dt>hight price</dt>
+        <dd>{{ stock?.h| currency }}</dd>
+      </dl>
+      <app-tendancy [value]="stock?.dp"></app-tendancy>
+    </mat-card-content>
+  </mat-card>
 </ng-container>

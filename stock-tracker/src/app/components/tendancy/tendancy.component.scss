@@ -1,0 +1,14 @@
+:host{
+  font-size: 5rem;
+  display: block;
+  padding: 1rem;
+
+  &.down {
+    color: red;
+  }
+
+  &.up {
+    color: green;
+  }
+}
+
