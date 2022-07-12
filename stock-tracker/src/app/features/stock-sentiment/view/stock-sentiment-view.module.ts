@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { StockTitleModule } from 'src/app/components/stock-title';
 import { SentimentModule } from '../components/sentiment';
-import { SentimentToMonthPipe } from '../components/sentiment/sentiment-to-month.pipe';
 import { StockSentimentViewComponent } from './stock-sentiment-view.component';
 
 @NgModule({
@@ -14,8 +15,10 @@ import { StockSentimentViewComponent } from './stock-sentiment-view.component';
     MatButtonModule,
     MatCardModule,
     SentimentModule,
+    StockTitleModule,
+    NgxSkeletonLoaderModule,
   ],
-  declarations: [StockSentimentViewComponent, ],
+  declarations: [StockSentimentViewComponent],
   exports: [StockSentimentViewComponent],
 })
 export class StockSentimentViewModule {}

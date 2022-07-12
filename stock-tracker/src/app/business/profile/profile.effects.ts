@@ -21,16 +21,20 @@ export class ProfileEffects {
       )
       .pipe(filter(([, symbols]) => 0 !== symbols.length))
       .pipe(map(([, symbols]) => symbols[0]))
-      .pipe(
-        switchMap(symbol =>
-          this.api
-            .description(symbol)
-            .pipe(map(symbol => [symbol]))
-            .pipe(
-              map(profiles => ProfileActions.loadProfilesSuccess({ profiles }))
-            )
-        )
+      .pipe(map(symbol => ProfileActions.fetchProfile({ symbol })))
+  );
+
+  fetchProfile$ = createEffect(() =>
+    this.actions$.pipe(ofType(ProfileActions.fetchProfile)).pipe(
+      switchMap(({ symbol }) =>
+        this.api
+          .description(symbol)
+          .pipe(map(symbol => [symbol]))
+          .pipe(
+            map(profiles => ProfileActions.loadProfilesSuccess({ profiles }))
+          )
       )
+    )
   );
 
   loadProfiles$ = createEffect(() =>
@@ -42,8 +46,14 @@ export class ProfileEffects {
           this.store.select(selectMissingProfil(symbols))
         )
       )
+      .pipe(map(([, symbols]) => ProfileActions.fetchProfiles({ symbols })))
+  );
+
+  fetchProfiles$ = createEffect(() =>
+    this.actions$
+      .pipe(ofType(ProfileActions.fetchProfiles))
       .pipe(
-        switchMap(([, symbols]) =>
+        switchMap(({ symbols }) =>
           forkJoin(symbols.map(symbol => this.api.description(symbol))).pipe(
             map(profiles => ProfileActions.loadProfilesSuccess({ profiles }))
           )
@@ -54,23 +64,7 @@ export class ProfileEffects {
   addSymbol$ = createEffect(() =>
     this.actions$
       .pipe(ofType(addSymbol))
-      .pipe(
-        concatLatestFrom(({ symbol }) =>
-          this.store.select(selectMissingProfil([symbol]))
-        )
-      )
-      .pipe(filter(([, symbols]) => 0 !== symbols.length))
-      .pipe(map(([, symbols]) => symbols[0]))
-      .pipe(
-        switchMap(symbol =>
-          this.api
-            .description(symbol)
-            .pipe(map(symbol => [symbol]))
-            .pipe(
-              map(profiles => ProfileActions.loadProfilesSuccess({ profiles }))
-            )
-        )
-      )
+      .pipe(map(({ symbol }) => ProfileActions.loadProfile({ symbol })))
   );
 
   constructor(

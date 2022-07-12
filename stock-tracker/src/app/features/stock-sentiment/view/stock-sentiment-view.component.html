@@ -1,12 +1,20 @@
 <mat-card>
   <mat-card-title>
-    {{ profile?.description }} ({{ profile?.symbol }})
+    <app-stock-title [profile]="profile"></app-stock-title>
   </mat-card-title>
   <mat-card-content>
-    <app-sentiment
-      *ngFor="let sentiment of sentiments"
-      [sentiment]="sentiment"
-    ></app-sentiment>
+    <ng-container *ngIf="0 === sentiments.length">
+      <ngx-skeleton-loader count="4" appearance="line"></ngx-skeleton-loader>
+    </ng-container>
+
+    <ng-container *ngIf="0 !== sentiments.length">
+      <section class="blocks">
+        <app-sentiment
+          *ngFor="let sentiment of sentiments"
+          [sentiment]="sentiment"
+        ></app-sentiment>
+      </section>
+    </ng-container>
   </mat-card-content>
 </mat-card>
 <a mat-raised-button color="accent" routerLink="../..">

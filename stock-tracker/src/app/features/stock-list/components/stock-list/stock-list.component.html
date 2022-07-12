@@ -1,25 +1,38 @@
 <ng-container *ngFor="let stock of stocks">
   <mat-card>
-    <mat-card-title
-      >{{ stock?.description }} ({{ stock?.symbol }})</mat-card-title
-    >
+    <mat-card-title>
+      <app-stock-title [profile]="stock"></app-stock-title>
+    </mat-card-title>
     <mat-card-content>
-      <dl>
-        <dt>change today</dt>
-        <dd>{{ stock?.d | currency }}</dd>
-        <dt>opening price</dt>
-        <dd>{{ stock?.o | currency }}</dd>
-        <dt>current price</dt>
-        <dd>{{ stock?.c | currency }}</dd>
-        <dt>hight price</dt>
-        <dd>{{ stock?.h | currency }}</dd>
-      </dl>
-      <app-tendancy [value]="stock?.dp"></app-tendancy>
+      <ng-container *ngIf="!stock?.loaded">
+        <ngx-skeleton-loader
+          count="1"
+          appearance="circle"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="2" appearance="line"></ngx-skeleton-loader>
+      </ng-container>
+      <ng-container *ngIf="stock?.loaded">
+        <dl>
+          <dt>change today</dt>
+          <dd>{{ stock?.d | currency }}</dd>
+          <dt>opening price</dt>
+          <dd>{{ stock?.o | currency }}</dd>
+          <dt>current price</dt>
+          <dd>{{ stock?.c | currency }}</dd>
+          <dt>hight price</dt>
+          <dd>{{ stock?.h | currency }}</dd>
+        </dl>
+        <app-tendancy [value]="stock?.dp"></app-tendancy>
+      </ng-container>
     </mat-card-content>
     <mat-card-actions align="end">
       <a
-      [routerLink]="['sentiment', stock.symbol]"
-      mat-stroked-button color="accent">Go to social sentiment detail</a>
+        [routerLink]="['sentiment', stock.symbol]"
+        mat-stroked-button
+        color="accent"
+        >Go to social sentiment detail</a
+      >
       <button mat-flat-button (click)="remove.emit(stock.symbol)">X</button>
     </mat-card-actions>
   </mat-card>

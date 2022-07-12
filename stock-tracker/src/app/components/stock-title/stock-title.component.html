@@ -1,0 +1,7 @@
+<ng-container *ngIf="'...' === profile?.description">
+  <ngx-skeleton-loader count="1"></ngx-skeleton-loader>
+</ng-container>
+<ng-container *ngIf="'...' !== profile?.description">
+  <span>{{ profile?.description }}</span>
+</ng-container>
+<span>({{ profile?.symbol }})</span>
