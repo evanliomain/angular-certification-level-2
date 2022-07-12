@@ -1,0 +1,14 @@
+<mat-card>
+  <p>Enter the symbol of a stock to track (ie: AAPL, TSLA, GOOGL)</p>
+
+  <form (ngSubmit)="add.emit(input.value); input.value = ''">
+    <mat-form-field>
+      <input matInput type="text" #input autofocus />
+    </mat-form-field>
+    <button mat-flat-button type="submit">Add</button>
+  </form>
+</mat-card>
+
+<ng-container *ngFor="let stock of stocks">
+  {{ stock | json }}
+</ng-container>

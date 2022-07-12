@@ -1,0 +1,26 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.stylelint": true,
+    "source.fixAll.tslint": true,
+    "source.addMissingImports": true
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "files.eol": "\n",
+  "prettier.endOfLine": "lf",
+  "editor.tabSize": 2,
+  // turn off default vs code formatter
+  "html.format.enable": false,
+  "css.validate": false,
+  "scss.validate": false,
+
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "angular.enable-strict-mode-prompt": false
+}
