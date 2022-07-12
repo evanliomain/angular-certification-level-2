@@ -6,5 +6,7 @@ const selectSymbolState = createFeatureSelector<fromSymbol.State>(
 );
 
 export const selectSymbols = createSelector(selectSymbolState, state =>
-  Object.keys(state)
+  Object.entries(state)
+    .filter(([, isIn]) => isIn)
+    .map(([symbol]) => symbol)
 );

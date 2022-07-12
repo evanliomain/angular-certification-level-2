@@ -13,5 +13,10 @@ export const reducer = createReducer(
   on(SymbolActions.addSymbol, (state, { symbol }) => ({
     ...state,
     [symbol]: true,
+  })),
+
+  on(SymbolActions.removeSymbol, (state, { symbol }) => ({
+    ...state,
+    [symbol]: false,
   }))
 );

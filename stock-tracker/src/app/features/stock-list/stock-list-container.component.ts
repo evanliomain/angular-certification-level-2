@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { loadProfiles, ProfileState } from 'src/app/business/profile';
 import { loadQuotes, selectQuotesAndProfil } from 'src/app/business/quote';
-import { addSymbol, SymbolState } from 'src/app/business/symbol';
+import { addSymbol, removeSymbol, SymbolState } from 'src/app/business/symbol';
 
 @Component({
   selector: 'app-stock-list-container',
   template: `<app-stock-list-view
     [stocks]="(quotes$ | async) ?? []"
     (add)="onAdd($event)"
+    (remove)="onRemove($event)"
   ></app-stock-list-view>`,
 })
 export class StockListContainerComponent implements OnInit {
@@ -26,5 +27,12 @@ export class StockListContainerComponent implements OnInit {
       return;
     }
     this.store.dispatch(addSymbol({ symbol: symbol.toUpperCase() }));
+  }
+
+  protected onRemove(symbol: string): void {
+    if (undefined === symbol || null === symbol || '' === symbol) {
+      return;
+    }
+    this.store.dispatch(removeSymbol({ symbol }));
   }
 }

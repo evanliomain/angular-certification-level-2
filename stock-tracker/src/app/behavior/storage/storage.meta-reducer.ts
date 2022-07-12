@@ -7,7 +7,7 @@ export function storageMetaReducer<S, A extends Action = Action>(key: string) {
       const storageKey = `__storage__.${key}`;
       const savedState =
         JSON.parse(localStorage.getItem(storageKey) ?? '{}') || {};
-      nextState = { ...nextState, ...savedState };
+      nextState = { ...savedState, ...nextState };
       localStorage.setItem(storageKey, JSON.stringify(nextState));
       return nextState;
     };
