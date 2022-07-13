@@ -22,7 +22,7 @@ export class SentimentEffects {
       )
       .pipe(filter(([, hasSentiment]) => !hasSentiment))
       .pipe(map(([symbol]) => symbol))
-      .pipe(map(symbol => ({ symbol, ...lastMonths(3) })))
+      .pipe(map(symbol => ({ symbol, ...lastMonths(2) })))
       .pipe(
         switchMap(({ symbol, from, to }) =>
           this.api
