@@ -33,7 +33,13 @@
         color="accent"
         >Go to social sentiment detail</a
       >
-      <button mat-flat-button (click)="remove.emit(stock.symbol)">X</button>
+      <button
+        mat-flat-button
+        (click)="remove.emit(stock.symbol)"
+        aria-label="Remove stock from list"
+      >
+        X
+      </button>
     </mat-card-actions>
   </mat-card>
 </ng-container>
