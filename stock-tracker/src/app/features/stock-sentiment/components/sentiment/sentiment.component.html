@@ -2,9 +2,9 @@
 
 <dl>
   <dt>change</dt>
-  <dd>{{ sentiment?.change | currency }}</dd>
+  <dd>{{ sentiment?.change | number }}</dd>
   <dt>mspr</dt>
-  <dd>{{ sentiment?.mspr | currency }}</dd>
+  <dd>{{ sentiment?.mspr | number }}</dd>
 </dl>
 
 <app-tendancy [value]="sentiment.change"></app-tendancy>

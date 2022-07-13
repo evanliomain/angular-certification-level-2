@@ -15,7 +15,7 @@
       <ng-container *ngIf="stock?.loaded">
         <dl>
           <dt>change today</dt>
-          <dd>{{ stock?.d | currency }}</dd>
+          <dd>{{ stock?.d | percent }}</dd>
           <dt>opening price</dt>
           <dd>{{ stock?.o | currency }}</dd>
           <dt>current price</dt>
